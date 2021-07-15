@@ -5,6 +5,20 @@ version : 2.0.0
 2. author : Can-Guo, 12032421@mail.sustech.edu.cn
 3. Data : 2021.07.14
 
+
+###############
+ubuntu -->
+###############
+
+
+1. Connect the JY61 with a USB-TTL adaptor, the connection flow would be
+    [PC] <--> [USB-TTL Adaptor] <--> [JY61 sensor]
+2. open a terminal, type
+pip3 install pyserial
+3. run the python script <test_read_imu_2.py> to read the data from JY61
+4. Noted that: the Module <Witsensor.py> should in the same folder with <test_read_imu_2.py>.
+
+
 version : 1.0.0 
 
 ###############
@@ -16,13 +30,4 @@ Windows -->
 3. 软件下载地址：https://download.csdn.net/download/Fred_1986/15602449
 4. 视频教程：https://www.bilibili.com/video/BV1bV411v7Bm/
 
-
-###############
-ubuntu -->
-###############
-
-1. open a terminal, type
-pip3 install pyserial
-2. use the python script <test_read_imu_2.py> to read the data from JY61
-3. 
 
