@@ -3,7 +3,7 @@
 version : 2.0.0
 1. intempt to implement as a function which could feedback data for N-times (mean value) -- IMU
 2. author : Can-Guo, 12032421@mail.sustech.edu.cn
-3. Data : 2021.07.14
+3. Date : 2021.07.14
 
 version : 1.0.0 
 1.运行前需先安装pyserial，用WIN+R调出运行框，输入CMD，进入命令行，输入pip install pyserial更新一下函数库
