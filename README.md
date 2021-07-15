@@ -12,7 +12,9 @@ ubuntu -->
 
 
 1. Connect the JY61 with a USB-TTL adaptor, the connection flow would be
+
     [PC] <--> [USB-TTL Adaptor] <--> [JY61 sensor]
+    
 2. open a terminal, type
 pip3 install pyserial
 3. run the python script <test_read_imu_2.py> to read the data from JY61
