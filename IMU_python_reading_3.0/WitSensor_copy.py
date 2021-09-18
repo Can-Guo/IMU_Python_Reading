@@ -4,9 +4,6 @@
 import serial
 
 # For data collection and recording
-import os.path
-import sys
-import time
 from datetime import date, datetime
 import csv
 
@@ -22,7 +19,7 @@ with open( file_name + '.csv','a') as file:
     # writer.writerow({'time':current,'acc_x':acc_x,'acc_y':acc_y,'acc_z':acc_z,'gyro_x':gyro_x,'gyro_y':gyro_y,'gyro_z':gyro_z,'roll':roll,'pitch':pitch,'yaw':yaw})
     
     writer = csv.writer(file,delimiter=',',quotechar='"',quoting = csv.QUOTE_MINIMAL)
-    writer.writerow(['time','acc_x','acc_y','acc_z','gyro_x','gyro_y','gyro_z','roll','pitch','yaw'])
+    writer.writerow(['time','acc_x','acc_y','acc_z','roll','pitch','yaw'])
 
 file.close()
 
@@ -119,8 +116,8 @@ def DueData(inputdata):   #新增的核心程序，对读取的数据进行划�
                 CheckSum=0
                 Bytenum=0
                 FrameState=0
-
-    return acc_x,acc_y,acc_z,gyro_x,gyro_y,gyro_z,roll,pitch,yaw
+    return acc_x,acc_y,acc_z,roll,pitch,yaw
+    # return acc_x,acc_y,acc_z,gyro_x,gyro_y,gyro_z,roll,pitch,yaw
  
  
 def get_acc(datahex):  
@@ -212,19 +209,19 @@ if __name__=='__main__':
         # get the 9-axis data of IMU module
         datahex = ser.read(33)
         # Data = DueData(datahex)
-        acc_x,acc_y,acc_z,gyro_x,gyro_y,gyro_z,roll,pitch,yaw = DueData(datahex)
+        acc_x,acc_y,acc_z,roll,pitch,yaw = DueData(datahex)
         
-        print(current,acc_x,acc_y,acc_z,gyro_x,gyro_y,gyro_z,roll,pitch,yaw)
+        print(current,acc_x,acc_y,acc_z,roll,pitch,yaw)
 
         # record data from IMU module into a CSV file
 
         with open( file_name + '.csv','a') as file:
             
-            # writer = csv.DictWriter(file, fieldnames=['time','acc_x','acc_y','acc_z','gyro_x','gyro_y','gyro_z','roll','pitch','yaw'])
-            # writer.writerow({'time':current,'acc_x':acc_x,'acc_y':acc_y,'acc_z':acc_z,'gyro_x':gyro_x,'gyro_y':gyro_y,'gyro_z':gyro_z,'roll':roll,'pitch':pitch,'yaw':yaw})
+            writer = csv.DictWriter(file, fieldnames=['time','acc_x','acc_y','acc_z','roll','pitch','yaw'])
+            writer.writerow({'time':current,'acc_x':acc_x,'acc_y':acc_y,'acc_z':acc_z,'roll':roll,'pitch':pitch,'yaw':yaw})
             
-            # writer.writerow(['time','acc_x','acc_y','acc_z','gyro_x','gyro_y','gyro_z','roll','pitch','yaw'])
-            writer = csv.writer(file,delimiter=',',quotechar='"',quoting = csv.QUOTE_MINIMAL)
-            writer.writerow([current,acc_x,acc_y,acc_z,gyro_x,gyro_y,gyro_z,roll,pitch,yaw])
+            # # writer.writerow(['time','acc_x','acc_y','acc_z','gyro_x','gyro_y','gyro_z','roll','pitch','yaw'])
+            # writer = csv.writer(file,delimiter=',',quotechar='"',quoting = csv.QUOTE_MINIMAL)
+            # writer.writerow([current,acc_x,acc_y,acc_z,gyro_x,gyro_y,gyro_z,roll,pitch,yaw])
             
         file.close()
