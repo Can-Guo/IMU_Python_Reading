@@ -7,9 +7,28 @@ import serial
 import os.path
 import sys
 import time
-import datetime
+from datetime import date, datetime
 import csv
 
+## Create a csv file to store the data from IMU
+
+time_mark = datetime.now()
+
+file_name = 'data_' + str(time_mark)
+
+with open( file_name + '.csv','a') as file:
+    
+    # writer = csv.DictWriter(file, fieldnames=['time','acc_x','acc_y','acc_z','gyro_x','gyro_y','gyro_z','roll','pitch','yaw'])
+    # writer.writerow({'time':current,'acc_x':acc_x,'acc_y':acc_y,'acc_z':acc_z,'gyro_x':gyro_x,'gyro_y':gyro_y,'gyro_z':gyro_z,'roll':roll,'pitch':pitch,'yaw':yaw})
+    
+    writer = csv.writer(file,delimiter=',',quotechar='"',quoting = csv.QUOTE_MINIMAL)
+    writer.writerow(['time','acc_x','acc_y','acc_z','gyro_x','gyro_y','gyro_z','roll','pitch','yaw'])
+
+file.close()
+
+
+
+## Create parameters to store the temporary data
 
 ACCData=[0.0]*8
 GYROData=[0.0]*8
@@ -21,6 +40,9 @@ CheckSum = 0              #求和校验位
 a = [0.0]*3
 w = [0.0]*3
 Angle = [0.0]*3
+
+## Define a function to convert raw data into suitable format
+
 def DueData(inputdata):   #新增的核心程序，对读取的数据进行划分，各自读到对应的数组里
     global  FrameState    #在局部修改全局变量，要进行global的定义
     global  Bytenum
@@ -28,9 +50,14 @@ def DueData(inputdata):   #新增的核心程序，对读取的数据进行划�
     global  a
     global  w
     global  Angle
+
+
     for data in inputdata:  #在输入的数据进行遍历
-        print(data)
-        data = ord(data)
+
+        #Python2软件版本这里需要插入 data = ord(data)
+        # data = ord(data)
+        # ****************************************************************************************************
+        
         if FrameState==0:   #当未确定状态的时候，进入以下判断
             if data==0x55 and Bytenum==0: #0x55位于第一位时候，开始读取数据，增大bytenum
                 CheckSum=data
@@ -48,6 +75,7 @@ def DueData(inputdata):   #新增的核心程序，对读取的数据进行划�
                 CheckSum+=data
                 FrameState=3
                 Bytenum=2
+
         elif FrameState==1: # acc    #已确定数据代表加速度
             
             if Bytenum<10:            # 读取8个数据
@@ -61,6 +89,7 @@ def DueData(inputdata):   #新增的核心程序，对读取的数据进行划�
                 CheckSum=0                  #各数据归零，进行新的循环判断
                 Bytenum=0
                 FrameState=0
+
         elif FrameState==2: # gyro
             
             if Bytenum<10:
@@ -74,6 +103,7 @@ def DueData(inputdata):   #新增的核心程序，对读取的数据进行划�
                 CheckSum=0
                 Bytenum=0
                 FrameState=0
+
         elif FrameState==3: # angle
             
             if Bytenum<10:
@@ -89,6 +119,7 @@ def DueData(inputdata):   #新增的核心程序，对读取的数据进行划�
                 CheckSum=0
                 Bytenum=0
                 FrameState=0
+
     return acc_x,acc_y,acc_z,gyro_x,gyro_y,gyro_z,roll,pitch,yaw
  
  
@@ -105,6 +136,7 @@ def get_acc(datahex):
     acc_x = (axh << 8 | axl) / 32768.0 * k_acc
     acc_y = (ayh << 8 | ayl) / 32768.0 * k_acc
     acc_z = (azh << 8 | azl) / 32768.0 * k_acc
+
     if acc_x >= k_acc:
         acc_x -= 2 * k_acc
     if acc_y >= k_acc:
@@ -127,12 +159,14 @@ def get_gyro(datahex):
     gyro_x = (wxh << 8 | wxl) / 32768.0 * k_gyro
     gyro_y = (wyh << 8 | wyl) / 32768.0 * k_gyro
     gyro_z = (wzh << 8 | wzl) / 32768.0 * k_gyro
+
     if gyro_x >= k_gyro:
         gyro_x -= 2 * k_gyro
     if gyro_y >= k_gyro:
         gyro_y -= 2 * k_gyro
     if gyro_z >=k_gyro:
         gyro_z-= 2 * k_gyro
+
     return gyro_x,gyro_y,gyro_z
  
  
@@ -148,6 +182,7 @@ def get_angle(datahex):
     angle_x = (rxh << 8 | rxl) / 32768.0 * k_angle
     angle_y = (ryh << 8 | ryl) / 32768.0 * k_angle
     angle_z = (rzh << 8 | rzl) / 32768.0 * k_angle
+
     if angle_x >= k_angle:
         angle_x -= 2 * k_angle
     if angle_y >= k_angle:
@@ -160,28 +195,36 @@ def get_angle(datahex):
  
 if __name__=='__main__': 
     # use raw_input function for python 2.x or input function for python3.x
-   # port = input('please input port No. such as com8:');
-    #port = input('please input port No. such as com7:'));
-   # baud = int(input('please input baudrate(115200 for JY61 or 9600 for JY901):'))
-    ser = serial.Serial('com4', 115200, bytesize=8, parity='N', stopbits=1, timeout=1)  # ser = serial.Serial('com8',115200, timeout=0.5) 
-    print(ser.is_open)
+
+    ser = serial.Serial('/dev/ttyUSB0', 115200, bytesize=8, parity='N', stopbits=1, timeout=1)  # ser = serial.Serial('com8',115200, timeout=0.5) 
+    
+    if ser.is_open == True:
+        print("Serial port is now connecting successfully!")
+    else:
+        print("Serial port is not connecting correctly! Please check your device!")
 
     while True:
 
         # get the current time stamp
         current = datetime.now()
-        now = current.strftime("%H:%M:%S")
+        # now = current.strftime("%H:%M:%S")
 
         # get the 9-axis data of IMU module
         datahex = ser.read(33)
         # Data = DueData(datahex)
         acc_x,acc_y,acc_z,gyro_x,gyro_y,gyro_z,roll,pitch,yaw = DueData(datahex)
+        
+        print(current,acc_x,acc_y,acc_z,gyro_x,gyro_y,gyro_z,roll,pitch,yaw)
 
         # record data from IMU module into a CSV file
 
-        with open('data.csv','a') as file:
+        with open( file_name + '.csv','a') as file:
             
-            writer = csv.DictWriter(file, fieldnames=['time','acc_x','acc_y','acc_z','gyro_x','gyro_y','gyro_z','roll','pitch','yaw'])
-            writer.writerow({'time':now},{'acc_x':acc_x},{'acc_y':acc_y},{'acc_z':acc_z},{'gyro_x':gyro_x},{'gyro_y':gyro_y},{'gyro_z':gyro_z},{'roll':roll},{'pitch':pitch},{'yaw':yaw})
+            # writer = csv.DictWriter(file, fieldnames=['time','acc_x','acc_y','acc_z','gyro_x','gyro_y','gyro_z','roll','pitch','yaw'])
+            # writer.writerow({'time':current,'acc_x':acc_x,'acc_y':acc_y,'acc_z':acc_z,'gyro_x':gyro_x,'gyro_y':gyro_y,'gyro_z':gyro_z,'roll':roll,'pitch':pitch,'yaw':yaw})
+            
+            # writer.writerow(['time','acc_x','acc_y','acc_z','gyro_x','gyro_y','gyro_z','roll','pitch','yaw'])
+            writer = csv.writer(file,delimiter=',',quotechar='"',quoting = csv.QUOTE_MINIMAL)
+            writer.writerow([current,acc_x,acc_y,acc_z,gyro_x,gyro_y,gyro_z,roll,pitch,yaw])
             
         file.close()

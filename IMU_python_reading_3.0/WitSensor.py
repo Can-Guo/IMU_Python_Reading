@@ -19,8 +19,8 @@ def DueData(inputdata):   #新增的核心程序，对读取的数据进行划�
     global  w
     global  Angle
     for data in inputdata:  #在输入的数据进行遍历
-        print(data)
-        data = ord(data)
+        # print(data)
+        # data = ord(data)
         if FrameState==0:   #当未确定状态的时候，进入以下判断
             if data==0x55 and Bytenum==0: #0x55位于第一位时候，开始读取数据，增大bytenum
                 CheckSum=data
@@ -149,7 +149,7 @@ if __name__=='__main__':
    # port = input('please input port No. such as com8:');
     #port = input('please input port No. such as com7:'));
    # baud = int(input('please input baudrate(115200 for JY61 or 9600 for JY901):'))
-    ser = serial.Serial('com4', 115200, bytesize=8, parity='N', stopbits=1, timeout=1)  # ser = serial.Serial('com8',115200, timeout=0.5) 
+    ser = serial.Serial('/dev/ttyUSB0', 115200, bytesize=8, parity='N', stopbits=1, timeout=1)  # ser = serial.Serial('com8',115200, timeout=0.5) 
     print(ser.is_open)
     while(1):
         datahex = ser.read(33)

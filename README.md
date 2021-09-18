@@ -1,9 +1,15 @@
 
+version : 3.0.0
+
+1. author : Can-Guo, 12032421@mail.sustech.edu.cn
+2. Date : 2021.09.18
+3. revision for data recording into a csv file
+
 
 version : 2.0.0
 1. intempt to implement as a function which could feedback data for N-times (mean value) -- IMU
 2. author : Can-Guo, 12032421@mail.sustech.edu.cn
-3. Data : 2021.07.14
+3. Date : 2021.07.14
 
 
 ###############
