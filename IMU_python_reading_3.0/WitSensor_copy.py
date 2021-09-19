@@ -4,7 +4,7 @@
 import serial
 
 # For data collection and recording
-from datetime import date, datetime
+from datetime import datetime
 import csv
 
 ## Create a csv file to store the data from IMU

@@ -5,6 +5,7 @@ LastEditTime: 2021-09-18 12:46:46
 FilePath: \Python\listcom.py
 '''
 
+
 import serial #导入模块
  
 import serial.tools.list_ports
