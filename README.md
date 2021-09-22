@@ -1,21 +1,21 @@
-NOTE:
+###NOTE:
 
 For Linux, you should make sure the USB port in your /dev dir.
-    1. Before you run the data reading, you should change the pemission of the USB port device:
-    2. $: sudo chmod 666 /dev/ttyUSB*      // (you may change '*' into a int number 0 or 1 or ...)
-    3. You can list the availiable USB device by running the <listcom.py>
+    ####1. Before you run the data reading, you should change the pemission of the USB port device:
+    ####2. $: sudo chmod 666 /dev/ttyUSB*      // (you may change '*' into a int number 0 or 1 or ...)
+    ####3. You can list the availiable USB device by running the <listcom.py>
 
 For Windows, you should make sure the COM port in your Device Manager.
-    1. You can list the availiable USB device by running the <listcom.py>
+    ####1. You can list the availiable USB device by running the <listcom.py>
 
-File Tree:
+###File Tree:
 **********************************************************************************************************
--IMU_python_reading_3.0
+####-IMU_python_reading_3.0
     --listcom.py  ->  list all the avaiable COM or USB devices, help you to choose the correct serial port.
     --WitSensor_copy.py  --> reading IMU data, recording data into CSV file
     --WitSensor.py --> original code by https://www.wit-motion.com/
 
--IMU_Python_1.0_2.0
+####-IMU_Python_1.0_2.0
     --WitSensor.py --> modified based on the original code from https://www.wit-motion.com/
     --test_read_mu_2.py --> Test the <WitSensor.py> script
 **********************************************************************************************************
