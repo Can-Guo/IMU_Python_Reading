@@ -1,3 +1,16 @@
+'''
+*********************************************************************************************
+  *File: IMU_Reading.py
+  *Project: IMU_python_reading_3.0
+  *Filepath: /home/guoyucan/Downloads/IMU_Python_Reading/IMU_python_reading_3.0/IMU_Reading.py 
+  *File Created: Saturday, 18th September 2021 4:41:26 pm
+  *Author: Guo Yucan, 12032421@mail.sustech.edu.cn 
+  *Last Modified: Wednesday, 22nd September 2021 1:32:13 pm
+  *Modified By: Guo Yucan, 12032421@mail.sustech.edu.cn 
+  *Copyright @ 2021 , BionicDL LAB, SUSTECH, Shenzhen, China 
+*********************************************************************************************
+'''
+
 #coding:UTF-8
 
 # For reading data from serial port of IMU module

@@ -57,7 +57,7 @@ def plot_imu_data_csv(csvfilename=None):
     ylabel = ['roll data','accerelation of x axis', 'pitch data', 'accerelation of y axis', 'yaw data','accerelation of z axis']
     legend = ['roll angle','x-axis accerelation', 'pitch angle', 'y-axis accerelation', 'yaw angle',  'z-axis accerelation']
     data_record = [roll_record,acc_x_record,pitch_record,acc_y_record,yaw_record,acc_z_record]
-    color = ['r-.','c-','g-o','y-','b-*','m-']
+    color = ['r--','c-','g--','y-','b--','m-']
 
     for i in range(6):
 
