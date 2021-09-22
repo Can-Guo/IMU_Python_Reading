@@ -14,11 +14,18 @@
 #coding:UTF-8
 
 # For reading data from serial port of IMU module
+# import pygame
 import serial
-
+from pygame import key
+# import pygram
 # For data collection and recording
 from datetime import datetime
 import csv
+
+
+# Import the IMU_Plotting_CSV module to plot the imu data
+from IMU_Plotting_CSV import plot_imu_data_csv
+
 
 ## Create a csv file to store the data from IMU
 
@@ -50,6 +57,9 @@ CheckSum = 0              #求和校验位
 a = [0.0]*3
 w = [0.0]*3
 Angle = [0.0]*3
+
+# global exit_flag
+# exit_flag = 0
 
 ## Define a function to convert raw data into suitable format
 
@@ -203,7 +213,10 @@ def get_angle(datahex):
     return angle_x,angle_y,angle_z
  
  
-if __name__=='__main__': 
+def main():
+
+    # pygame.init()
+
     # use raw_input function for python 2.x or input function for python3.x
 
     ser = serial.Serial('/dev/ttyUSB0', 115200, bytesize=8, parity='N', stopbits=1, timeout=1)  # ser = serial.Serial('com8',115200, timeout=0.5) 
@@ -213,7 +226,10 @@ if __name__=='__main__':
     else:
         print("Serial port is not connecting correctly! Please check your device!")
 
-    while True:
+
+    exit_flag = 0   # exit flag for while loop, if exit_flag == 1, end the while loop
+
+    while exit_flag != 1:
 
         # get the current time stamp
         current = datetime.now()
@@ -238,3 +254,20 @@ if __name__=='__main__':
             # writer.writerow([current,acc_x,acc_y,acc_z,gyro_x,gyro_y,gyro_z,roll,pitch,yaw])
             
         file.close()
+
+
+        # for event in pygame.event.get():clea
+        #     if event.type == pygame.QUIT:
+        #         pass
+
+        # key_pressed = pygame.key.get_pressed()
+
+        # if key_pressed[pygame.K_SPACE]:
+        #     exit_flag = 1
+        #     return file_name
+
+      
+main()
+
+# plot_imu_data_csv(csv_file_name)
+
