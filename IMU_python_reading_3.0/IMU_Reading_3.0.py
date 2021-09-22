@@ -14,10 +14,8 @@
 #coding:UTF-8
 
 # For reading data from serial port of IMU module
-# import pygame
 import serial
-from pygame import key
-# import pygram
+
 # For data collection and recording
 from datetime import datetime
 import csv
@@ -215,7 +213,6 @@ def get_angle(datahex):
  
 def main():
 
-    # pygame.init()
 
     # use raw_input function for python 2.x or input function for python3.x
 
@@ -227,9 +224,7 @@ def main():
         print("Serial port is not connecting correctly! Please check your device!")
 
 
-    exit_flag = 0   # exit flag for while loop, if exit_flag == 1, end the while loop
-
-    while exit_flag != 1:
+    while True:
 
         # get the current time stamp
         current = datetime.now()
@@ -254,17 +249,6 @@ def main():
             # writer.writerow([current,acc_x,acc_y,acc_z,gyro_x,gyro_y,gyro_z,roll,pitch,yaw])
             
         file.close()
-
-
-        # for event in pygame.event.get():clea
-        #     if event.type == pygame.QUIT:
-        #         pass
-
-        # key_pressed = pygame.key.get_pressed()
-
-        # if key_pressed[pygame.K_SPACE]:
-        #     exit_flag = 1
-        #     return file_name
 
       
 main()

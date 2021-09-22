@@ -78,15 +78,15 @@ def plot_imu_data_csv(csvfilename=None, flag=0):
     time_sequence = np.linspace(0,frame_size,len(roll_record))
 
 
-    # plot the data
+    # create a figure object
     plt.figure(figsize=(16,5))
 
     # flag == 0 , go forward data plotting or go laterward data plotting 
     if flag == 0:
       plt.plot(time_sequence,roll_record,'r--', label = 'roll angle (degree)')
       plt.plot(time_sequence,pitch_record,'g-.', label = 'pitch angle (degree)')
-      plt.plot(time_sequence,yaw_record,'b', label = 'yaw angle (degree)')
-      plt.ylim([-100,100])
+      # plt.plot(time_sequence,yaw_record,'b', label = 'yaw angle (degree)')
+      plt.ylim([-30,30])
 
     # flag == 1 , go on a circle trajectory
     elif flag == 1:
@@ -101,8 +101,7 @@ def plot_imu_data_csv(csvfilename=None, flag=0):
 
     plt.legend()
     plt.grid()
-      
-    # flag == 0 , go forward data plotting
+    
 
     ##################################################
     # plot=[None]*6
@@ -112,7 +111,7 @@ def plot_imu_data_csv(csvfilename=None, flag=0):
     # plot[3] = plt.subplot(324)
     # plot[4] = plt.subplot(325)
     # plot[5] = plt.subplot(326)
-    
+
     # xlabel = 'time frame'
     # ylabel = ['roll data','accerelation of x axis', 'pitch data', 'accerelation of y axis', 'yaw data','accerelation of z axis']
     # legend = ['roll angle','x-axis accerelation', 'pitch angle', 'y-axis accerelation', 'yaw angle',  'z-axis accerelation']
@@ -148,5 +147,5 @@ def plot_imu_data_csv(csvfilename=None, flag=0):
 # Test the module with callback of the plot function plot_imu_data_csv
 # call the function to plot imu data from CSV
 
-plot_imu_data_csv(csvfilename='data_2021-09-22 21:07:02.023691_lateral_ok_3.csv', flag = 0 )
+plot_imu_data_csv(csvfilename='data_2021-09-22 21:23:24.251881_turning_ok_3.csv', flag = 1 )
 
