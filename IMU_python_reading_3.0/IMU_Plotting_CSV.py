@@ -101,7 +101,7 @@ def plot_imu_data_csv(csvfilename=None, flag=0):
 
     plt.legend()
     plt.grid()
-    
+
 
     ##################################################
     # plot=[None]*6
