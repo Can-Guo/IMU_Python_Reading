@@ -14,15 +14,16 @@
 #coding:UTF-8
 
 # For reading data from serial port of IMU module
+from sys import last_traceback
 import serial
 
 # For data collection and recording
-from datetime import datetime
+from datetime import datetime, time
 import csv
 
 
 # Import the IMU_Plotting_CSV module to plot the imu data
-from IMU_Plotting_CSV import plot_imu_data_csv
+# from IMU_Plotting_CSV import plot_imu_data_csv
 
 
 ## Create a csv file to store the data from IMU
