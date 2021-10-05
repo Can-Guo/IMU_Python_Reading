@@ -1,24 +1,63 @@
 ### NOTE:
 
 For Linux, you should make sure the USB port in your /dev dir.
-#### 1. Before you run the data reading script, you should change the pemission of the USB port device by the following comand.
-#### 2. $: sudo chmod 666 /dev/ttyUSB*      // (you may change '*' into a int number 0,1,2 ...)
-#### 3. You can list the availiable USB device by running the <listcom.py>
+#### 1. Before you run the data reading script, you should change the pemission of the USB port device by the following command 
+
+``` terminal
+sudo chmod 666 /dev/ttyUSB*      // (you may change '*' into a int number 0,1,2 ...)
+```
+
+#### 2. You can list the availiable USB device by running the <listcom.py>
 
 For Windows, you should make sure the COM port in your Device Manager.
 #### 1. You can list the availiable USB device by running the <listcom.py>
 
 ### File Tree:
 
-#### -IMU_python_reading_3.0
-    - listcom.py  ->  list all the avaiable COM or USB devices, help you to choose the correct serial port.
-    - WitSensor_copy.py  --> reading IMU data, recording data into CSV file
-    - WitSensor.py --> original code by https://www.wit-motion.com/
+```
+ 📂IMU_Python_1.0_2.0
+  ┣ 📜WitSensor.py
+  ┗ 📜test_read_imu_2.py
+ 📂IMU_python_reading_3.0
+  ┣ 📜IMU_Plotting_CSV.py
+  ┣ 📜IMU_Reading_3.0.py
+  ┣ 📜IMU_Reading_Recording_Plotting.py
+  ┗ 📜WitSensor.py
+ 📂csv
+  ┣ 📜data_2021-09-22 20:21:33.192971_forward_ok_1.csv
+  ┣ 📜data_2021-09-22 20:26:45.136785_forward_ok_2.csv
+  ┣ 📜data_2021-09-22 20:32:37.902621_forward_ok_3.csv
+  ┣ 📜data_2021-09-22 20:50:04.713883_lateral_ok_1.csv
+  ┣ 📜data_2021-09-22 20:54:37.761909_lateral_ok_2.csv
+  ┣ 📜data_2021-09-22 21:07:02.023691_lateral_ok_3.csv
+  ┣ 📜data_2021-09-22 21:14:16.327567_turning_ok_1.csv
+  ┣ 📜data_2021-09-22 21:18:19.296148_turning_ok_2.csv
+  ┣ 📜data_2021-09-22 21:23:24.251881_turning_ok_3.csv
+  ┗ 📜data_2021-09-28 21:54:43.609238_turning_ok_4.csv
+ 📂fig
+  ┣ 📜FORWARD_FIG.png
+  ┣ 📜LATERAL_FIG.png
+  ┣ 📜TURNING_FIG_1.png
+  ┣ 📜TURNING_FIG_2.png
+  ┣ 📜forward_fig_1.png
+  ┣ 📜forward_fig_2.png
+  ┣ 📜forward_figure_ok_1.png
+  ┣ 📜imu_data_20210928.zip
+  ┣ 📜imu_data_20211005.zip
+  ┣ 📜imu_data_figure_20210927.zip
+  ┣ 📜lateral_fig_1.png
+  ┣ 📜lateral_fig_2.png
+  ┣ 📜lateral_figure_ok_1.png
+  ┣ 📜turning_fig_1.png
+  ┣ 📜turning_fig_2.png
+  ┣ 📜turning_figure_ok_1.png
+  ┗ 📜turning_figure_ok_2.png
+📜.gitignore
+📜LICENSE
+📜README.md
+📜listcom.py
 
-#### -IMU_Python_1.0_2.0
-    - WitSensor.py --> modified based on the original code from https://www.wit-motion.com/
-    - test_read_mu_2.py --> Test the <WitSensor.py> script
-
+```
 
 version : 3.0.0
 
