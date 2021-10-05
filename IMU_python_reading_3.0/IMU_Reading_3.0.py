@@ -14,7 +14,6 @@
 #coding:UTF-8
 
 # For reading data from serial port of IMU module
-from sys import last_traceback
 import serial
 
 # For data collection and recording

@@ -66,8 +66,14 @@ def plot_imu_data_csv(csvfilename=None, flag=0, a = 0, b = 0):
     yaw_record   = data[0:b-a,5]
     
 
-    
-    # frame_size = (data_frame['time'][frame_number-1]-data_frame['time'][0]) / 100.0
+    ###
+    ## for turning, roll angle error abjustment
+    error_delta = roll_record[418]-roll_record[417]
+    print(error_delta)
+
+    roll_record[418:500] = roll_record[418:500] - error_delta
+    # print(roll_record[400:500])
+    ###
 
     frame_size = b-a
     frequency = 100.0
@@ -75,30 +81,31 @@ def plot_imu_data_csv(csvfilename=None, flag=0, a = 0, b = 0):
 
 
     # create a figure object
-    plt.figure(figsize=(20,7))
+    plt.figure(figsize=(20,10))
 
     # flag == 0 , go forward data plotting or go laterward data plotting 
     if flag == 0:
-      plt.plot(time_sequence,roll_record,'r--', label = 'roll angle (degree)')
-      plt.plot(time_sequence,pitch_record,'g-', label = 'pitch angle (degree)')
+      plt.plot(time_sequence,roll_record,'r--', label = 'roll angle')
+      plt.plot(time_sequence,pitch_record,'g-', label = 'pitch angle')
       # plt.plot(time_sequence,yaw_record,'b', label = 'yaw angle (degree)')
-      plt.ylim([-20,20])
+      plt.ylim([-10,10])
 
     # flag == 1 , go on a circle trajectory
     elif flag == 1:
-      # plt.plot(time_sequence,roll_record,'r--', label = 'roll angle (degree)')
-      # plt.plot(time_sequence,pitch_record,'g-.', label = 'pitch angle (degree)')
-      plt.plot(time_sequence,yaw_record,'b-.', label = 'yaw angle (degree)')
-      plt.ylim([-30,170])
+      # plt.plot(time_sequence,roll_record,'r--', label = 'roll angle')
+      # plt.plot(time_sequence,pitch_record,'g-.', label = 'pitch angle')
+      plt.plot(time_sequence,yaw_record,'b-.', label = 'yaw angle')
+      plt.ylim([-10,190])
 
-    plt.xticks(fontsize=20)
-    plt.yticks(fontsize=20)
+    plt.xlim([0.0,5.0])
+    plt.xticks(fontsize=40)
+    plt.yticks(fontsize=40)
 
-    plt.ylabel('angle (degree)',fontsize=20)
-    plt.xlabel('time (second)',fontsize=20)
+    plt.ylabel('angle (deg)',fontsize=35)
+    plt.xlabel('time (sec)',fontsize=35)
     # plt.xlim([0,frame_size])
 
-    plt.legend(fontsize=20)
+    plt.legend(fontsize=35)
     plt.grid()
 
 
@@ -137,7 +144,7 @@ def plot_imu_data_csv(csvfilename=None, flag=0, a = 0, b = 0):
 
 
     current = datetime.now()
-    fig_name = './' + str(current) + '.png'
+    fig_name = './fig/' + str(current) + '.png'
     res = plt.savefig(fig_name,dpi=600)
 
     plt.show()
@@ -147,5 +154,5 @@ def plot_imu_data_csv(csvfilename=None, flag=0, a = 0, b = 0):
 # Test the module with callback of the plot function plot_imu_data_csv
 # call the function to plot imu data from CSV
 
-plot_imu_data_csv(csvfilename='data_2021-09-22 21:14:16.327567_turning_ok_1.csv', flag = 1, a = 1500, b = 2000 )
+plot_imu_data_csv(csvfilename='data_2021-09-28 21:54:43.609238_turning_ok_4.csv', flag = 1, a = 600, b = 1100 )
 

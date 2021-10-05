@@ -1,8 +1,8 @@
 ### NOTE:
 
 For Linux, you should make sure the USB port in your /dev dir.
-#### 1. Before you run the data reading, you should change the pemission of the USB port device:
-#### 2. $: sudo chmod 666 /dev/ttyUSB*      // (you may change '*' into a int number 0 or 1 or ...)
+#### 1. Before you run the data reading script, you should change the pemission of the USB port device by the following comand.
+#### 2. $: sudo chmod 666 /dev/ttyUSB*      // (you may change '*' into a int number 0,1,2 ...)
 #### 3. You can list the availiable USB device by running the <listcom.py>
 
 For Windows, you should make sure the COM port in your Device Manager.
