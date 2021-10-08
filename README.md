@@ -21,6 +21,8 @@ python3 listcom.py
 ##### 	a. You can also list the availiable USB device by running the <listcom.py> at your IDE or command window.
 
 
+
+
 ### 2. File Tree
 
 ```
@@ -72,7 +74,7 @@ python3 listcom.py
 
 ### 3. Note for windows & Linux
 
-#### 	< Linux>
+#### 		< Linux>
 
 1. ##### Connect the JY61 with a USB-TTL adaptor, the connection flow would be
 
@@ -80,9 +82,9 @@ python3 listcom.py
     
 2. ##### open a terminal, type
 
-  ```shell
-  pip3 install pyserial
-  ```
+      ```shell
+      pip3 install pyserial
+      ```
 
 3. ##### run the python script <test_read_imu_2.py> to test the imu sensor. If you get IMU data stream at your terminal, then the sensor is good.
 
@@ -95,7 +97,7 @@ python3 listcom.py
 
 
 
-#### 	< Windows>
+#### 		< Windows>
 
 
 1. ##### 运行前需先安装pyserial，用WIN+R调出运行框，输入cmd，进入命令行，输入pip install pyserial更新一下函数库.
@@ -114,7 +116,7 @@ python3 listcom.py
 
 ### 4. Version Record
 
-version : 3.0.0
+​	version : 3.0.0
 
 1. author : Can-Guo, 12032421@mail.sustech.edu.cn
 2. Date : 2021.09.18
@@ -123,7 +125,7 @@ version : 3.0.0
 
 
 
-version : 2.0.0
+​	version : 2.0.0
 
 1. intempt to implement as a function which could feedback data for N-times (mean value) -- IMU
 2. author : Can-Guo, 12032421@mail.sustech.edu.cn
@@ -131,7 +133,6 @@ version : 2.0.0
 
 
 
-version : 1.0.0 
+​	version : 1.0.0 
 
- 	1. initial implement
-
+1. initial implement
