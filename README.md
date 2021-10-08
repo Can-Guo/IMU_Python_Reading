@@ -11,6 +11,9 @@ sudo chmod 666 /dev/ttyUSB*      // (you may change '*' into a int number 0,1,2 
 
 For Windows, you should make sure the COM port in your Device Manager.
 #### 1. You can list the availiable USB device by running the <listcom.py>
+```terminal
+python3 listcom.py
+```
 
 ### File Tree:
 
@@ -94,8 +97,8 @@ Windows -->
 
 
 1. 运行前需先安装pyserial，用WIN+R调出运行框，输入CMD，进入命令行，输入pip install pyserial更新一下函数库.
-2. 教程地址：https://blog.csdn.net/Fred_1986/article/details/114415548
-3. 软件下载地址：https://download.csdn.net/download/Fred_1986/15602449
-4. 视频教程：https://www.bilibili.com/video/BV1bV411v7Bm/
+2. 官方教程地址：https://blog.csdn.net/Fred_1986/article/details/114415548
+3. Python下载地址：https://www.python.org/downloads/
+4. 官方视频教程：https://www.bilibili.com/video/BV1bV411v7Bm/
 
 
