@@ -1,21 +1,27 @@
-### NOTE:
+### 1. Configuration for Linux & Windows
 
-For Linux, you should make sure the USB port in your /dev dir.
-#### 1. Before you run the data reading script, you should change the pemission of the USB port device by the following command 
+#### For Linux, you should make sure the USB port of the IMU in your /dev dir.
 
-``` terminal
+##### 	a. Before you run the data reading script, you should change the pemission of the USB port device by the following command 
+
+``` shell
 sudo chmod 666 /dev/ttyUSB*      // (you may change '*' into a int number 0,1,2 ...)
 ```
 
-#### 2. You can list the availiable USB device by running the <listcom.py>
+##### 	b. You can list the availiable USB device by running the <listcom.py>
 
-For Windows, you should make sure the COM port in your Device Manager.
-#### 1. You can list the availiable USB device by running the <listcom.py>
-```terminal
+```shell
 python3 listcom.py
 ```
 
-### File Tree:
+
+
+#### For Windows, you should make sure the COM port of the IMU in your Device Manager.
+
+##### 	a. You can also list the availiable USB device by running the <listcom.py> at your IDE or command window.
+
+
+### 2. File Tree
 
 ```
  📂IMU_Python_1.0_2.0
@@ -62,6 +68,52 @@ python3 listcom.py
 
 ```
 
+
+
+### 3. Note for windows & Linux
+
+#### 	< Linux>
+
+1. ##### Connect the JY61 with a USB-TTL adaptor, the connection flow would be
+
+    [PC]   <==>   [USB-TTL Adaptor]   <==>   [JY61 sensor]
+    
+2. ##### open a terminal, type
+
+  ```shell
+  pip3 install pyserial
+  ```
+
+3. ##### run the python script <test_read_imu_2.py> to test the imu sensor. If you get IMU data stream at your terminal, then the sensor is good.
+
+    ```shell
+    python3 test_read_imu_2.py
+    ```
+
+4. ##### Note that: the Module <Witsensor.py> should in the same folder with <test_read_imu_2.py>.
+
+
+
+
+#### 	< Windows>
+
+
+1. ##### 运行前需先安装pyserial，用WIN+R调出运行框，输入cmd，进入命令行，输入pip install pyserial更新一下函数库.
+
+   ```powershell
+   pip install pyserial
+   ```
+
+2. ##### 官方教程地址：https://blog.csdn.net/Fred_1986/article/details/114415548
+
+3. ##### Python下载地址：https://www.python.org/downloads/
+
+4. ##### 官方视频教程：https://www.bilibili.com/video/BV1bV411v7Bm/
+
+
+
+### 4. Version Record
+
 version : 3.0.0
 
 1. author : Can-Guo, 12032421@mail.sustech.edu.cn
@@ -69,36 +121,17 @@ version : 3.0.0
 3. Modification 1: revision for data recording into a CSV file
 4. Modification 2: add a module to plot the imu data from the resultant CSV file we got before
 
+
+
 version : 2.0.0
+
 1. intempt to implement as a function which could feedback data for N-times (mean value) -- IMU
 2. author : Can-Guo, 12032421@mail.sustech.edu.cn
 3. Date : 2021.07.14
 
 
-**********************************************************************************************************
-ubuntu -->
-
-
-
-1. Connect the JY61 with a USB-TTL adaptor, the connection flow would be
-
-    [PC] <--> [USB-TTL Adaptor] <--> [JY61 sensor]
-    
-2. open a terminal, type
-pip3 install pyserial
-3. run the python script <test_read_imu_2.py> to read the data from JY61
-4. Noted that: the Module <Witsensor.py> should in the same folder with <test_read_imu_2.py>.
-
 
 version : 1.0.0 
 
-**********************************************************************************************************
-Windows -->
-
-
-1. 运行前需先安装pyserial，用WIN+R调出运行框，输入CMD，进入命令行，输入pip install pyserial更新一下函数库.
-2. 官方教程地址：https://blog.csdn.net/Fred_1986/article/details/114415548
-3. Python下载地址：https://www.python.org/downloads/
-4. 官方视频教程：https://www.bilibili.com/video/BV1bV411v7Bm/
-
+ 	1. initial implement
 
