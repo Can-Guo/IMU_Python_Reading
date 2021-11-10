@@ -1,8 +1,8 @@
 '''
 Date: 2021-08-10 15:00:51
 LastEditors: Guo Yuqin,12032421@mail.sustech.edu.cn
-LastEditTime: 2021-08-17 16:52:25
-FilePath: /servoDogVersion1.0/source/Xbox_value.py
+LastEditTime: 2021-11-10 14:46:40
+FilePath: /IMU_Python_Reading/Python_multiThread/Xbox_value.py
 Based on Source at pygame.joystick module demo -->
 http://www.pygame.org/docs/ref/joystick.html
 '''
@@ -16,7 +16,8 @@ http://www.pygame.org/docs/ref/joystick.html
 
 
 import pygame
-
+from pygame.constants import NOEVENT
+import os,sys 
 
 class XBOX_class:
     
@@ -28,7 +29,8 @@ class XBOX_class:
         self.joystick = None
         self.name = None
         self.GUID = None
-        
+        self.done = None # Can be used to stop the scanning
+
         # There are 6 axes in the XBOX joystick controller
         # axis_0,axis_1 --> left  stick
         # axis_3,axis_4 --> right stick
@@ -75,7 +77,7 @@ class XBOX_class:
 
         print("XBOX is Initializing ......")
         
-        self.initialize_xbox(self)
+        
 
 
     def initialize_xbox(self):
@@ -132,18 +134,19 @@ class XBOX_class:
 
         
     def get_xbox_status(self):
-        
-        ## TODO: need to integrate with the stepless abjustment of Power 
 
- 
+        self.done = False
 
-        ### HAHAHA ! Interesting ! 
-        self.done = False # Can be used to stop the scanning
+        if self.done == False:
+            ## TODO: need to integrate with the stepless abjustment of Power 
 
-        clock = pygame.time.Clock()
-
-        while self.done == False:
+            ### HAHAHA ! Interesting ! 
             
+
+            clock = pygame.time.Clock()
+
+            # while self.done == False:
+                
             # self.initialize_xbox()
             # EVENT PROCESSING STEP
             for event in pygame.event.get(): # User did something
@@ -169,9 +172,9 @@ class XBOX_class:
                     self.R_step = axis
 
             # print("Stick 1  (%f,%f)  \n" % (self.axis_0, self.axis_1))
-            # print(" Left_Step  %f  \n" % self.L_step)
+            print(" Left_Step  %f  \n" % self.L_step)
             # print("Stick 2  (%f,%f)  \n" % (self.axis_3, self.axis_4))
-            # print("Right_Step  %f  \n" % self.R_step)
+            print("Right_Step  %f  \n" % self.R_step)
 
             # Get the status of the buttons
             for i in range( self.buttons ):
@@ -223,18 +226,24 @@ class XBOX_class:
                     self.FX_down = 1
                     print("FX_down")
 
-            self.done = True
-            # clock.tick(30)
+            clock.tick(10)
+            return [self.L_step,self.R_step,self.FX_up,self.FX_down,self.FX_left,self.FX_right]
+        
+        
     def get_joystick(self):
         return self
+
     
+    def shutdown(self):
+        pygame.quit()
+        os._exit()
 
 
 ##########################
 # Test the Xbox class module.
-xbox = XBOX_class()
-# xbox.initialize_xbox()
-xbox.get_xbox_status()
-print(xbox.done)
+# xbox = XBOX_class()
+# # xbox.initialize_xbox()
+# xbox.get_xbox_status()
+# print(xbox.done)
 # Test End.
 ##########################

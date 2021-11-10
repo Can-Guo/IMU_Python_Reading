@@ -1,4 +1,10 @@
 '''
+Date: 2021-11-09 16:28:25
+LastEditors: Guo Yuqin,12032421@mail.sustech.edu.cn
+LastEditTime: 2021-11-09 16:34:25
+FilePath: /IMU_Python_Reading/Python_multiThread/IMU_threading_test.py
+'''
+'''
 *********************************************************************************************
   *File: IMU_threading_test.py
   *Project: Python_multiThread
@@ -33,7 +39,7 @@ def IMU_data_producer(output_queue):
         # Acquire the IMU data
         Angles = IMU_device.get_IMU_data()
 
-        print(Angles)
+        # print(Angles)
         
         # re-arrange the data shape
         angle_list[:-1] = angle_list[1:]
