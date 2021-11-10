@@ -1,7 +1,7 @@
 '''
 Date: 2021-11-09 16:29:29
 LastEditors: Guo Yuqin,12032421@mail.sustech.edu.cn
-LastEditTime: 2021-11-10 13:30:20
+LastEditTime: 2021-11-10 21:02:30
 FilePath: /IMU_Python_Reading/Python_multiThread/XBOX_threading_test.py
 '''
 
@@ -13,6 +13,7 @@ import numpy as np
 
 ## create a thread to access the XBOX status
 def XBOX_access(output_queue_1):
+    print("Thread - 1 ")
     XBOX_device = XBOX_class()
     XBOX_device.initialize_xbox()
 
@@ -20,15 +21,13 @@ def XBOX_access(output_queue_1):
         command = XBOX_device.get_xbox_status()
         output_queue_1.put(command)
     
-## create a thread to do something based on the XBOX status
+## create a thread to do somethiXBOX_deviceng based on the XBOX status
 
 def XBOX_command(input_queue_1):
-    
-    
+    print("Thread - 2 ")
     while True:
         command = input_queue_1.get()
-        print(command[0])
-        print("success!\r\n")
+        # print("Thread - 2 is running :",command)
     
 
 
